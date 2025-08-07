@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Móveis Ebenerzer1</title>
+    <title>Moveis Ebenezer</title>
     <style>
         :root {
-            --primary: hwb(0 2% 93%);
-            --secondary: #77654c;
-            --light: #2e1a1a;
-            --dark: #141313;
+            --primary: #0f0e0e;
+            --secondary: #bb7412;
+            --light: #584848;
+            --dark: #080913;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -19,16 +19,16 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: lab(7.85% 0.49 0.17 / 0.219);
+            background-color: lab(87.31% 8.53 -7.46 / 0.219);
             color: var(--dark);
             line-height: 1.6;
         }
 
         header {
-            background-color: #f0620f;
-            box-shadow: var(--shadow);
+            background-color: #ee540d; /* Usa a cor principal da marca */
+            box-shadow: #444;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -55,7 +55,7 @@
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            color: var(--primary);
+            color: #f5f4f3;
         }
 
         .nav-links {
@@ -65,7 +65,7 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: #ffffff;
             font-weight: 500;
             transition: color 0.3s;
             position: relative;
@@ -73,7 +73,7 @@
 
         .nav-links a:hover,
         .nav-links a.active {
-            color: var(--primary);
+            color: var(--brand-primary);
         }
 
         .nav-links a.active::after {
@@ -83,7 +83,7 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background-color: var(--primary);
+            background-color: var(--brand-primary);
         }
 
         .search-bar {
@@ -99,7 +99,7 @@
         
         .search-bar input {
             padding: 0.5rem 1rem;
-            border: 1px solid #dddddd;
+            border: 1px solid #ebdada;
             border-radius: 20px;
             outline: none;
             width: 100%;
@@ -128,7 +128,7 @@
             cursor: pointer;
             position: absolute;
             right: 10px;
-            color: #666666;
+            color: var(--error-red);
         }
 
         main {
@@ -153,14 +153,14 @@
 
         .hero {
             height: 300px;
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('tela.png');
+            background-image: linear-gradient(rgba(12, 12, 12, 0.3), rgba(0,0,0,0.3)), url('loja.png');
             background-size: cover;
             background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: rgb(255, 255, 255);
+            color: rgb(236, 234, 234);
             text-align: center;
             border-radius: 8px;
             margin-bottom: 2rem;
@@ -176,7 +176,7 @@
         @media (min-width: 768px) {
             .hero {
                 height: 500px;
-                background-image: url('tela.png');
+                background-image: url('loja.png');
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-position: center;
@@ -190,7 +190,7 @@
         .hero p {
             font-size: 1.2rem;
             max-width: 700px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 2px rgba(2, 2, 2, 0.5);
         }
 
         .tab-buttons {
@@ -212,8 +212,8 @@
 
         .tab-btn {
             padding: 0.5rem 1rem;
-            background-color: oklch(100% 0.00011 271.152);
-            border: 1px solid oklab(89.755% 0 -0.0001);
+            background-color: var(--background-light);
+            border: 1px solid var(--border-light);
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s;
@@ -226,7 +226,7 @@
 
         .tab-btn.active {
             background-color: var(--primary);
-            color: white;
+            color: rgb(250, 244, 244);
             border-color: var(--primary);
         }
 
@@ -269,13 +269,44 @@
 
         .product-info h3 {
             margin-bottom: 0.5rem;
-            color: var(--primary);
+            color: #161515;
         }
 
         .product-info p {
             margin-bottom: 1rem;
-            color: #666;
+            color: #000000;
             font-size: 0.9rem;
+        }
+
+        .btn-whatsapp {
+            background-color: #25d366; /* Cor do WhatsApp */
+            color: white; /* Texto branco */
+            display: inline-flex; /* Para alinhar texto e ícone */
+            align-items: center; /* Alinha verticalmente */
+            gap: 10px; /* Espaçamento entre o ícone e o texto */
+            padding: 15px 30px; /* Preenchimento interno */
+            border-radius: 25px; /* Cantos arredondados */
+            text-decoration: none; /* Remove sublinhado do link */
+            font-weight: bold; /* Negrito */
+            font-size: 1rem; /* Tamanho da fonte */
+            transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+            border: none; /* Remove borda, se houver */
+            cursor: pointer; /* Indica que é clicável */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para profundidade */
+
+             
+        }
+
+        .btn-whatsapp img {
+            width: 24px;  /* Tamanho do ícone */
+            height: 24px; /* Tamanho do ícone */
+            filter: invert(0) brightness(0) saturate(100%) invert(1); /* Para ícone branco */
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128c7e; /* Cor do WhatsApp mais escura */
+            transform: translateY(-2px); /* Efeito sutil de levantar */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra mais intensa */
         }
 
         .price {
@@ -321,7 +352,7 @@
             right: 15px;
             font-size: 1.5rem;
             cursor: pointer;
-            color: #666;
+            color: #fa0707;
         }
 
         .modal-body {
@@ -381,7 +412,7 @@
         }
 
         .modal-description {
-            color: #666;
+            color: #000000;
             margin-bottom: 1.5rem;
         }
 
@@ -410,7 +441,7 @@
         }
 
         .search-item:hover {
-            background-color: var(--light);
+            background-color: #ddd5d5;
         }
 
         .history-content {
@@ -446,7 +477,7 @@
         }
         
         .contact-card {
-            background-color: white;
+            background-color: rgb(248, 245, 245);
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: var(--shadow);
@@ -467,7 +498,7 @@
         
         .contact-card p {
             margin: 0.25rem 0;
-            color: #666;
+            color: #1b1b1b;
         }
         
         .contact-card a {
@@ -561,11 +592,41 @@
             color: white;
         }
 
+        /* Botão flutuante do WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-float img {
+            width: 35px;
+            height: 35px;
+            filter: none; /* Deixa o ícone branco */
+        }
+
         .copyright {
             text-align: center;
-            padding-top: 2rem;
-            margin-top: 2rem;
-            border-top: 1px solid #444;
+            padding-top: 0rem;
+            margin-top: 0rem;
+            border-top: 0px solid #444;
             font-size: 0.9rem;
             color: #999;
         }
@@ -574,7 +635,7 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Móveis Ebenerzer</div>
+            <div class="logo"><b>Móveis Ebenezer</b></div>
             <div class="nav-links">
                 <a href="#" class="active" data-section="home">Home</a>
                 <a href="#" data-section="products">Produtos</a>
@@ -595,14 +656,14 @@
     <main>
         <section id="home" class="section active">
             <div class="hero">
-                <h1>Bem-vindo à Móveis Ebenerzer</h1>
-                <p>Descubra a elegância e conforto em cada peça de mobiliário especialmente selecionada para seu lar</p>
+                <p></p>
             </div>
 
             <div class="tab-buttons">
-                <button class="tab-btn active" data-category="destaques">Destaques</button>
+                <button class="tab-btn active" data-category="destaques">Produtos em Destaques</button>
             </div>
 
+            <!--Produtos em Destaque-->
             <div class="products-grid">
                 <div class="product-card" data-category="destaques">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e64992b-358f-4959-bf8c-65b9870363a0.png" alt="Sofá moderno de 3 lugares em tecido cinza com detalhes em madeira" class="product-img">
@@ -633,6 +694,7 @@
             </div>
         </section>
 
+        <!--Campo dos Produtos (Balão)-->
         <section id="products" class="section">
             <h2 style="margin-bottom: 2rem;">Nossos Produtos</h2>
             
@@ -777,36 +839,13 @@
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                     </svg>
                     <h3>Instagram</h3>
-                    <a href="https://instagram.com/seuusuario" target="_blank">@seusuario</a>
-                </div>
-            </div>
-            
-            <div class="contact-form">
-                <h3 style="margin-bottom: 1rem;">Envie uma mensagem</h3>
-                <form id="form-contato">
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input type="text" id="nome" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="telefone">Telefone</label>
-                        <input type="tel" id="telefone">
-                    </div>
-                    <div class="form-group">
-                        <label for="mensagem">Mensagem</label>
-                        <textarea id="mensagem" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Enviar Mensagem</button>
-                </form>
+                    <a href="https://www.instagram.com/moveisebenezerr/" target="_blank">@Moveis Ebenezer</a>
+                </div>          
             </div>
         </section>
     </main>
 
-    <!-- Modal de Produto -->
+    <!-- Abrir imagens -->
     <div class="modal" id="product-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -817,73 +856,62 @@
     </div>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Sobre Nós</h3>
-                <p>Trazendo elegância e conforto para seu lar desde 1995. Qualidade garantida e satisfação do cliente em primeiro lugar.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Links Rápidos</h3>
-                <a href="#" class="footer-link">Home</a>
-                <a href="#" class="footer-link">Produtos</a>
-                <a href="#" class="footer-link">Sobre</a>
-                <a href="#" class="footer-link">Contato</a>
-            </div>
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <p>contato@moveiselegantes.com.br</p>
-                <p>(11) 1234-5678</p>
-                <p>Av. Paulista, 1000 - São Paulo/SP</p>
-            </div>
-        </div>
+                             
         <div class="copyright">
-            <p>&copy; 2023 Móveis Elegantes. Todos os direitos reservados.</p>
+            <p>&copy; <b>2025 Móveis Ebenezer. Todos os direitos reservados.</b></p>
+            <p>Desenvolvido por DevBarbosa.com</p>
         </div>
     </footer>
 
+        <a href="https://wa.me/5551992520046?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20móveis!" class="whatsapp-float" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp">
+        </a>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Navegação entre seções
-            const navLinks = document.querySelectorAll('.nav-links a');
-            const sections = document.querySelectorAll('.section');
-            
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    // Remove a classe active de todos os links e seções
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    sections.forEach(s => s.classList.remove('active'));
-                    
-                    // Adiciona a classe active no link clicado
-                    this.classList.add('active');
-                    
-                    // Mostra a seção correspondente
-                    const sectionId = this.getAttribute('data-section');
-                    document.getElementById(sectionId).classList.add('active');
-                });
+        // Navegação entre seções
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('.section');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove a classe active de todos os links e seções
+                navLinks.forEach(l => l.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                
+                // Adiciona a classe active no link clicado
+                this.classList.add('active');
+                
+                // Mostra a seção correspondente
+                const sectionId = this.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
             });
+        });
+
 
             // Filtro de produtos
             const tabButtons = document.querySelectorAll('.tab-btn');
-            
+        
             tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const category = this.getAttribute('data-category');
-                    
-                    // Atualiza o botão ativo
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    // Filtra os produtos
-                    const products = document.querySelectorAll('#products-container .product-card');
-                    products.forEach(product => {
-                        if (category === 'all' || product.getAttribute('data-category') === category) {
-                            product.style.display = 'block';
-                        } else {
-                            product.style.display = 'none';
+            button.addEventListener('click', function() {
+                const category = this.getAttribute('data-category');
+                
+                // Atualiza o botão ativo
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Filtra os produtos
+                const products = document.querySelectorAll('#products-container .product-card');
+                products.forEach(product => {
+                    if (category === 'all' || product.getAttribute('data-category') === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
                         }
-                    });
+                    );
                 });
             });
 
@@ -909,6 +937,10 @@
                             <h2>${name}</h2>
                             <div class="modal-price">${price}</div>
                             <p class="modal-description">${description}</p>
+                            <a href="https://wa.me/5551992520046?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20${encodeURIComponent(name)}" class="btn-whatsapp" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp Icon">
+                            Comprar via WhatsApp
+                        </a>
                      </div>
                     `;
                     
@@ -1034,22 +1066,6 @@
                 if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
                     searchResults.style.display = 'none';
                 }
-            });
-
-            // Formulário de contato
-            const contactForm = document.getElementById('form-contato');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const nome = document.getElementById('nome').value;
-                const email = document.getElementById('email').value;
-                const mensagem = document.getElementById('mensagem').value;
-                
-                // Aqui você normalmente enviaria os dados para um servidor
-                alert(`Obrigado, ${nome}! Sua mensagem foi enviada com sucesso. Entraremos em contato pelo e-mail ${email} em breve.`);
-                
-                this.reset();
             });
         });
     </script>
