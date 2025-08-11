@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Móveis Ebenezer</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
         :root {
             --primary-brand: #e65c00; /* Um tom de laranja mais vibrante */
@@ -309,15 +308,13 @@
         .product-card {
             background-color: white;
             border-radius: 12px;
-            overflow: hidden; /* Mantém o padrão, mas Swiper tem seu próprio overflow */
+            overflow: hidden;
             box-shadow: var(--shadow-light);
             transition: all 0.4s ease;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             animation: fadeIn 0.8s ease-out forwards;
-            position: relative; /* Para o posicionamento absoluto das setas do Swiper */
-            overflow: visible; /* Permite que as setas Swiper fiquem fora do card, se necessário */
         }
 
         .product-card:hover {
@@ -325,58 +322,16 @@
             box-shadow: var(--shadow-medium);
         }
 
-        /* Estilos para as imagens DENTRO do Swiper no card de produto */
-        .product-card .swiper {
+        .product-img {
+            height: 220px; /* Levemente aumentado */
             width: 100%;
-            height: 220px; /* Altura do container do carrossel */
-            overflow: hidden; /* Esconde partes das imagens que não estão visíveis */
-            border-radius: 12px 12px 0 0; /* Arredonda só o topo do carrossel */
-        }
-
-        .product-card .swiper-slide {
-            width: 100%;
-            height: 100%;
-            display: flex; /* Para centralizar a imagem se ela não preencher */
-            justify-content: center;
-            align-items: center;
-        }
-
-        .product-card .swiper-slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Garante que a imagem cubra o slide */
-            display: block;
-            transition: transform 0.3s ease; /* Transição de zoom ao passar o mouse */
+            object-fit: cover;
+            transition: transform 0.3s ease;
         }
         
-        .product-card:hover .swiper-slide img {
-            transform: scale(1.05); /* Zoom nas imagens do carrossel ao passar o mouse no card */
+        .product-card:hover .product-img {
+            transform: scale(1.05);
         }
-
-        /* Estilos para os botões de navegação do Swiper nos cards de produto */
-        .product-card .swiper-button-prev,
-        .product-card .swiper-button-next {
-            color: var(--primary-brand);
-            font-size: 1.8rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
-
-        .product-card .swiper-button-prev:hover,
-        .product-card .swiper-button-next:hover {
-            color: var(--secondary-accent);
-            transform: scale(1.1);
-        }
-
-        /* Estilos para a paginação do Swiper (bolinhas) nos cards de produto */
-        .product-card .swiper-pagination-bullet {
-            background-color: rgba(255, 255, 255, 0.7); /* Cor das bolinhas inativas */
-            opacity: 1;
-        }
-
-        .product-card .swiper-pagination-bullet-active {
-            background-color: var(--primary-brand); /* Cor da bolinha ativa */
-        }
-
 
         .product-info {
             padding: 1.8rem;
@@ -467,7 +422,7 @@
             max-width: 900px;
             width: 90%;
             max-height: 90vh;
-            overflow-y: auto; /* Para scroll se o conteúdo for muito grande */
+            overflow-y: auto;
             padding: 2.5rem;
             position: relative;
             transform: translateY(-30px);
@@ -513,46 +468,35 @@
             }
         }
 
-        /* Estilos do Swiper DENTRO do Modal */
-        .modal-img-container.swiper { /* Altera de .modal-img-container para .modal-img-container.swiper */
+        .modal-img-container {
             width: 100%;
-            height: 300px; /* Altura do carrossel no modal */
+            height: 300px;
+            overflow: hidden;
             border-radius: 10px;
-            background-color: #eee;
+            background-color: #eee; /* Fundo para imagens transparentes */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         @media (min-width: 768px) {
-            .modal-img-container.swiper {
+            .modal-img-container {
                 height: 450px;
             }
         }
 
-        .modal-img-container .swiper-slide img {
+        .modal-img {
             max-width: 100%;
             max-height: 100%;
-            object-fit: contain; /* Ajusta a imagem dentro do container, sem cortar */
-            display: block;
-            margin: auto; /* Centraliza a imagem */
-            cursor: zoom-in; /* Volta o cursor de zoom */
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
         }
         
-        .modal-img-container .swiper-button-prev,
-        .modal-img-container .swiper-button-next {
-            color: var(--primary-brand);
-        }
-
-        .modal-img-container .swiper-pagination-bullet-active {
-            background-color: var(--primary-brand);
-        }
-
-        /* Para a funcionalidade de zoom na imagem DO MODAL (quando não for carrossel ou para uma imagem específica do carrossel) */
-        /* Note: Se o carrossel no modal estiver ativo, o zoom da imagem individual pode não ser ideal, pois o clique já muda o slide.
-           A função de zoom será aplicada ao slide ativo, mas a navegação do carrossel terá prioridade no clique. */
-        .modal-img-container.swiper .swiper-slide img.zoomed {
+        .modal-img.zoomed {
             transform: scale(1.5);
             cursor: zoom-out;
         }
-
 
         .modal-text h2 {
             color: var(--primary-brand);
@@ -574,10 +518,10 @@
         }
 
         /* Search Results */
-        .search-bar .search-results { /* Específico para evitar conflito com outros divs */
+        .search-results {
             display: none;
             position: absolute;
-            top: calc(100% + 5px); /* Abaixo do input com um pequeno espaçamento */
+            top: 100%; /* Abaixo do input */
             left: 0;
             width: 100%;
             background-color: white;
@@ -591,7 +535,7 @@
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .search-bar .search-results.active {
+        .search-results.active {
             display: block;
             transform: translateY(0);
             opacity: 1;
@@ -820,29 +764,18 @@
             <div class="tab-buttons">
                 <button class="tab-btn active" data-category="destaques">🌟 Produtos em Destaque</button>
             </div>
-            
+
             <div class="products-grid">
-                <div class="product-card" data-category="destaques" data-name="sofá merlize"
-                     data-images='["sofa_3_lugares_suica_retratil_reclinavel_veludo_bege_200cm_5961_1_011162743f1b61e2df062079e20a1f5d.webp", "teste.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2328493-34ec-4078-8734-6b747d401fee.png"]'>
-                    <div class="swiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide"><img src="sofa_3_lugares_suica_retratil_reclinavel_veludo_bege_200cm_5961_1_011162743f1b61e2df062079e20a1f5d.webp" alt="Sofá Merlize - Vista Frontal"></div>
-                            <div class="swiper-slide"><img src="teste.png" alt="Sofá Merlize - Vista Lateral"></div>
-                            <div class="swiper-slide"><img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2328493-34ec-4078-8734-6b747d401fee.png" alt="Sofá Merlize - Detalhe"></div>
-                        </div>
-                        <div class="swiper-pagination"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
+                <div class="product-card" data-category="destaques" data-name="sofá elegance">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6e64992b-358f-4959-bf8c-65b9870363a0.png" alt="Sofá moderno de 3 lugares em tecido cinza com detalhes em madeira" class="product-img">
                     <div class="product-info">
-                        <h3>Sofá Merlize</h3>
-                        <p>Sofá de 3 lugares o mais lindo.</p>
-                        <div class="price">R$ 10.299,00</div>
+                        <h3>Sofá Elegance</h3>
+                        <p>Sofá de 3 lugares com estrutura em madeira maciça e enchimento de alta densidade.</p>
+                        <div class="price">R$ 3.299,00</div>
                     </div>
                 </div>
 
-                <div class="product-card" data-category="destaques" data-name="mesa family"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a9bf15e2-bd9b-4036-bf4e-fa7e46d7b15a.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/85f2503e-1ed9-46b9-acce-3a57502aa7d7.png"]'>
+                <div class="product-card" data-category="destaques" data-name="mesa family">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a9bf15e2-bd9b-4036-bf4e-fa7e46d7b15a.png" alt="Mesa de jantar retangular em madeira maciça com cadeiras estofadas" class="product-img">
                     <div class="product-info">
                         <h3>Mesa Family</h3>
@@ -851,8 +784,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="destaques" data-name="cama luxo"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f30e0fb8-26f0-446b-872f-cfbbec915c8b.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/434bd62d-8183-46e8-b070-314d570133f6.png"]'>
+                <div class="product-card" data-category="destaques" data-name="cama luxo">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f30e0fb8-26f0-446b-872f-cfbbec915c8b.png" alt="Cama queen size em madeira escura com cabeceira estofada" class="product-img">
                     <div class="product-info">
                         <h3>Cama Luxo</h3>
@@ -875,8 +807,7 @@
             </div>
 
             <div class="products-grid" id="products-container">
-                <div class="product-card" data-category="living" data-name="sofá elegance"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2328493-34ec-4078-8734-6b747d401fee.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/79bc937e-0ba2-4fbe-818d-ba3006989a2d.png"]'>
+                <div class="product-card" data-category="living" data-name="sofá elegance">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2328493-34ec-4078-8734-6b747d401fee.png" alt="Sofá moderno em tecido cinza claro com 3 lugares e apoio para braços em madeira" class="product-img">
                     <div class="product-info">
                         <h3>Sofá Elegance</h3>
@@ -885,8 +816,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="living" data-name="sofá love"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/79bc937e-0ba2-4fbe-818d-ba3006989a2d.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2328493-34ec-4078-8734-6b747d401fee.png"]'>
+                <div class="product-card" data-category="living" data-name="sofá love">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/79bc937e-0ba2-4fbe-818d-ba3006989a2d.png" alt="Sofá retrátil em veludo azul royal com 2 lugares e sistema de reclinagem" class="product-img">
                     <div class="product-info">
                         <h3>Sofá Love</h3>
@@ -895,8 +825,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="dining" data-name="mesa family"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/85f2503e-1ed9-46b9-acce-3a57502aa7d7.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a9bf15e2-bd9b-4036-bf4e-fa7e46d7b15a.png"]'>
+                <div class="product-card" data-category="dining" data-name="mesa family">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/85f2503e-1ed9-46b9-acce-3a57502aa7d7.png" alt="Mesa de jantar retangular em madeira clara com capacidade para 6 pessoas " class="product-img">
                     <div class="product-info">
                         <h3>Mesa Family</h3>
@@ -905,8 +834,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="dining" data-name="mesa moderna"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6a50000c-1858-4eb3-8c3f-175ceb8da229.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/85f2503e-1ed9-46b9-acce-3a57502aa7d7.png"]'>
+                <div class="product-card" data-category="dining" data-name="mesa moderna">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6a50000c-1858-4eb3-8c3f-175ceb8da229.png" alt="Mesa de jantar redonda com tampo em vidro temperado e base metálica" class="product-img">
                     <div class="product-info">
                         <h3>Mesa Moderna</h3>
@@ -915,8 +843,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="bedroom" data-name="cama luxo"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/434bd62d-8183-46e8-b070-314d570133f6.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f30e0fb8-26f0-446b-872f-cfbbec915c8b.png"]'>
+                <div class="product-card" data-category="bedroom" data-name="cama luxo">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/434bd62d-8183-46e8-b070-314d570133f6.png" alt="Cama queen size em madeira escura com cabeceira estofada em tecido bege" class="product-img">
                     <div class="product-info">
                         <h3>Cama Luxo</h3>
@@ -925,8 +852,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="bedroom" data-name="cama rattan"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/17de35d9-f2b4-4e7e-bc91-c05c5de6db5d.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/434bd62d-8183-46e8-b070-314d570133f6.png"]'>
+                <div class="product-card" data-category="bedroom" data-name="cama rattan">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/17de35d9-f2b4-4e7e-bc91-c05c5de6db5d.png" alt="Cama king size com estrutura em rattan e cabeceira decorativa" class="product-img">
                     <div class="product-info">
                         <h3>Cama Rattan</h3>
@@ -935,8 +861,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="office" data-name="escritório classic"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/39429ba0-a9c5-45ae-8bba-1e01480da969.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/698f479d-7b39-41fd-a921-f6c9146bb617.png"]'>
+                <div class="product-card" data-category="office" data-name="escritório classic">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/39429ba0-a9c5-45ae-8bba-1e01480da969.png" alt="Conjunto de escritório em madeira escura com mesa ampla e estante" class="product-img">
                     <div class="product-info">
                         <h3>Escritório Classic</h3>
@@ -945,8 +870,7 @@
                     </div>
                 </div>
 
-                <div class="product-card" data-category="office" data-name="cadeira executiva"
-                     data-images='["https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/698f479d-7b39-41fd-a921-f6c9146bb617.png", "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/39429ba0-a9c5-45ae-8bba-1e01480da969.png"]'>
+                <div class="product-card" data-category="office" data-name="cadeira executiva">
                     <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/698f479d-7b39-41fd-a921-f6c9146bb617.png" alt="Cadeira de escritório ergonômica com apoio lombar e cabeça" class="product-img">
                     <div class="product-info">
                         <h3>Cadeira Executiva</h3>
@@ -988,17 +912,29 @@
                     <h3>Telefone</h3>
                     <p>(11) 1234-5678</p>
                 </div>
+                
                 <div class="contact-card">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
                     <h3>E-mail</h3>
-                    <p><a href="mailto:contato@moveisebenezer.com">contato@moveisebenezer.com</a></p>
+                    <p>contato@moveiselegantes.com.br</p>
                 </div>
+                
+                <div class="contact-card">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                    <h3>Instagram</h3>
+                    <a href="https://www.instagram.com/moveisebenezerr/" target="_blank">@MoveisEbenezerOficial</a>
+                </div>          
             </div>
 
             <div class="contact-form">
+                <h3 style="margin-bottom: 2rem; text-align: center; color: var(--primary-brand);">Envie-nos uma Mensagem</h3>
                 <form>
                     <div class="form-group">
                         <label for="name">Nome Completo</label>
@@ -1022,295 +958,343 @@
         </section>
     </main>
 
-    <footer>
-        <div class="copyright">
-            <p>&copy; 2025 <b>Móveis Ebenezer</b>. Todos os direitos reservados.</p>
-            <p>Criado por [Seu Nome/Empresa]</p>
-        </div>
-    </footer>
-
-    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-    </a>
-
     <div class="modal" id="product-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <div class="modal-body">
-                <div class="modal-img-container swiper">
-                    <div class="swiper-wrapper" id="modal-swiper-wrapper">
-                        </div>
-                    <div class="swiper-pagination modal-swiper-pagination"></div>
-                    <div class="swiper-button-prev modal-swiper-button-prev"></div>
-                    <div class="swiper-button-next modal-swiper-button-next"></div>
+            <div class="modal-body" id="modal-body">
                 </div>
-                <div class="modal-text">
-                    <h2 id="modal-product-name"></h2>
-                    <div class="modal-price" id="modal-product-price"></div>
-                    <p class="modal-description" id="modal-product-description"></p>
-                    <a href="https://wa.me/5511999999999" class="btn-whatsapp" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon">
-                        Comprar via WhatsApp
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        // Variável global para armazenar a instância do Swiper do modal
-        let modalSwiper = null;
+    <footer>
+        <div class="copyright">
+            <p>&copy; <b>2025 Móveis Ebenezer. Todos os direitos reservados.</b></p>
+            <p>Desenvolvido por DevBarbosa.com</p>
+        </div>
+    </footer>
 
+    <a href="https://wa.me/5551992520046?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20os%20móveis!" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp">
+    </a>
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Data dos produtos para o modal e busca
+            const allProductsData = [
+                {
+                    name: "Sofá Elegance",
+                    category: "living",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a2328493-34ec-4078-8734-6b747d401fee.png",
+                    price: "R$ 3.299,00",
+                    description: "Um sofá de 3 lugares, elegante e confortável, com estrutura reforçada em madeira maciça e tecido resistente de alta qualidade. Perfeito para complementar qualquer sala de estar moderna. Disponível em diversas cores e tecidos para combinar com a sua decoração.",
+                    details: [
+                        "Estrutura em madeira de reflorestamento",
+                        "Assentos com espuma D-33 e molas espirais",
+                        "Encostos em fibra siliconada",
+                        "Pés de madeira maciça envernizada",
+                        "Tecido suede premium, anti-manchas",
+                        "Dimensões: 2.20m (largura) x 0.90m (profundidade) x 0.85m (altura)"
+                    ]
+                },
+                {
+                    name: "Sofá Love",
+                    category: "living",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/79bc937e-0ba2-4fbe-818d-ba3006989a2d.png",
+                    price: "R$ 2.499,00",
+                    description: "Sofá de 2 lugares com sistema retrátil e reclinável, revestido em tecido de veludo macio e luxuoso. Ideal para momentos de relaxamento e para espaços menores, oferecendo máximo conforto e estilo. Possui um design moderno e é fácil de integrar em diferentes ambientes.",
+                    details: [
+                        "Sistema retrátil e reclinável de 3 estágios",
+                        "Tecido em veludo de alta resistência",
+                        "Estrutura em eucalipto tratado",
+                        "Assentos com percintas elásticas e molas bonnel",
+                        "Braços almofadados para maior conforto",
+                        "Dimensões: 1.80m (largura) x 1.00m (profundidade fechado) x 0.95m (altura)"
+                    ]
+                },
+                {
+                    name: "Mesa Family",
+                    category: "dining",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/85f2503e-1ed9-46b9-acce-3a57502aa7d7.png",
+                    price: "R$ 4.599,00",
+                    description: "Mesa de jantar robusta para 6 pessoas, com tampo em madeira maciça e tratamento anti-manchas. Acompanha estrutura metálica que garante estabilidade e durabilidade. Perfeita para refeições em família e encontros com amigos, combinando funcionalidade e beleza.",
+                    details: [
+                        "Tampo em madeira maciça de lei (freijó ou nogueira)",
+                        "Pés em metal com pintura eletrostática preta",
+                        "Para 6 a 8 lugares (cadeiras vendidas separadamente)",
+                        "Acabamento em verniz acetinado",
+                        "Fácil montagem",
+                        "Dimensões: 1.80m (comprimento) x 0.90m (largura) x 0.75m (altura)"
+                    ]
+                },
+                {
+                    name: "Mesa Moderna",
+                    category: "dining",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6a50000c-1858-4eb3-8c3f-175ceb8da229.png",
+                    price: "R$ 3.899,00",
+                    description: "Mesa de jantar redonda com tampo em vidro temperado de 8mm e base elegante. Ideal para ambientes compactos ou para quem busca um design mais clean e contemporâneo. Proporciona leveza visual e é fácil de limpar.",
+                    details: [
+                        "Tampo em vidro temperado de 8mm",
+                        "Base em aço carbono com pintura epóxi",
+                        "Design minimalista e moderno",
+                        "Ideal para 4 a 6 lugares",
+                        "Dimensões: 1.20m (diâmetro) x 0.76m (altura)"
+                    ]
+                },
+                {
+                    name: "Cama Luxo",
+                    category: "bedroom",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/434bd62d-8183-46e8-b070-314d570133f6.png",
+                    price: "R$ 2.899,00",
+                    description: "Cama queen size com estrutura robusta em MDF e uma cabeceira estofada em tecido premium, oferecendo um toque de luxo e conforto ao seu quarto. O design sofisticado se adapta a diversos estilos de decoração, garantindo noites de sono tranquilas.",
+                    details: [
+                        "Estrutura em MDF de alta qualidade",
+                        "Cabeceira estofada em linho ou veludo (opcional)",
+                        "Compatível com colchões queen size (1.98m x 1.58m)",
+                        "Base reforçada com sarrafos de madeira maciça",
+                        "Fácil montagem e manutenção",
+                        "Dimensões: 2.10m (comprimento) x 1.68m (largura) x 1.10m (altura da cabeceira)"
+                    ]
+                },
+                {
+                    name: "Cama Rattan",
+                    category: "bedroom",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/17de35d9-f2b4-4e7e-bc91-c05c5de6db5d.png",
+                    price: "R$ 3.499,00",
+                    description: "Cama king size com uma estrutura leve e elegante em rattan natural, perfeita para quem busca um estilo mais orgânico e aconchegante. A cabeceira decorativa adiciona charme e personalidade ao ambiente. Proporciona um visual arejado e sofisticado.",
+                    details: [
+                        "Estrutura principal em madeira e revestimento em rattan natural trançado",
+                        "Design artesanal com detalhes únicos",
+                        "Compatível com colchões king size (2.03m x 1.93m)",
+                        "Pés de madeira maciça",
+                        "Traz um toque tropical e boêmio ao quarto",
+                        "Dimensões: 2.15m (comprimento) x 2.05m (largura) x 1.00m (altura da cabeceira)"
+                    ]
+                },
+                {
+                    name: "Escritório Classic",
+                    category: "office",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/39429ba0-a9c5-45ae-8bba-1e01480da969.png",
+                    price: "R$ 5.999,00",
+                    description: "Conjunto completo para escritório, fabricado em madeira maciça com acabamento premium. Inclui mesa ampla com gavetas e estante para organização. Ideal para criar um ambiente de trabalho sofisticado e funcional em casa.",
+                    details: [
+                        "Mesa em madeira maciça com 3 gavetas (1 com chave)",
+                        "Estante com prateleiras ajustáveis e armário inferior",
+                        "Acabamento em verniz fosco resistente a riscos",
+                        "Design clássico e atemporal",
+                        "Espaço otimizado para computadores e documentos",
+                        "Dimensões da Mesa: 1.60m (largura) x 0.80m (profundidade) x 0.76m (altura)",
+                        "Dimensões da Estante: 0.90m (largura) x 0.35m (profundidade) x 1.80m (altura)"
+                    ]
+                },
+                {
+                    name: "Cadeira Executiva",
+                    category: "office",
+                    image: "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/698f479d-7b39-41fd-a921-f6c9146bb617.png",
+                    price: "R$ 1.299,00",
+                    description: "Cadeira de escritório ergonômica, desenvolvida para proporcionar máximo conforto durante longas horas de uso. Possui apoio lombar ajustável, braços acolchoados e rodízios que deslizam suavemente. Indispensável para um home office produtivo e saudável.",
+                    details: [
+                        "Ajuste de altura a gás",
+                        "Mecanismo relax com travamento",
+                        "Apoio lombar e de cabeça ajustáveis",
+                        "Base giratória cromada com rodízios de silicone",
+                        "Revestimento em tela mesh respirável e couro sintético",
+                        "Suporta até 120kg"
+                    ]
+                }
+            ];
+
+            // Navegação entre seções
             const navLinks = document.querySelectorAll('.nav-links a');
             const sections = document.querySelectorAll('.section');
-            const tabButtonsHome = document.querySelectorAll('#home .tab-btn');
-            const tabButtonsProducts = document.querySelectorAll('#products-tabs .tab-btn');
-            const productCardsHome = document.querySelectorAll('#home .product-card');
-            const productCardsProducts = document.querySelectorAll('#products-container .product-card');
-            const searchInput = document.getElementById('search-input');
-            const searchResultsDiv = document.getElementById('search-results');
-            const productModal = document.getElementById('product-modal');
-            const closeModalBtn = document.querySelector('.close-modal');
-            const modalProductName = document.getElementById('modal-product-name');
-            const modalProductPrice = document.getElementById('modal-product-price');
-            const modalProductDescription = document.getElementById('modal-product-description');
-            const modalSwiperWrapper = document.getElementById('modal-swiper-wrapper');
             
-            // Variável para o zoom da imagem no modal (agora aplicada ao slide ativo, se houver)
-            let isZoomed = false;
-
-            // Função para alternar entre as seções (Home, Produtos, Contato)
-            function showSection(id) {
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                document.getElementById(id).classList.add('active');
-            }
-
-            // Event listeners para os links de navegação
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
-                    navLinks.forEach(item => item.classList.remove('active'));
+                    
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
                     this.classList.add('active');
-                    showSection(this.dataset.section);
+                    
+                    const sectionId = this.getAttribute('data-section');
+                    document.getElementById(sectionId).classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll para o topo da seção
                 });
             });
 
-            // Lógica para filtrar produtos por categoria
-            function filterProducts(cards, category) {
-                cards.forEach(card => {
-                    if (category === 'all' || card.dataset.category === category) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
+            // Filtro de produtos
+            const productTabButtons = document.querySelectorAll('#products-tabs .tab-btn');
+            const productsContainer = document.getElementById('products-container');
+            const homeProductsGrid = document.querySelector('#home .products-grid'); // Produtos em destaque
+
+            productTabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const category = this.getAttribute('data-category');
+                    
+                    productTabButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    filterProducts(category);
+                });
+            });
+
+            function filterProducts(category) {
+                // Clear current products
+                productsContainer.innerHTML = '';
+
+                // If 'all' or 'destaques', add all products or featured
+                let productsToDisplay = [];
+                if (category === 'all') {
+                    productsToDisplay = allProductsData;
+                } else if (category === 'destaques') {
+                    productsToDisplay = allProductsData.filter(product => 
+                        ["Sofá Elegance", "Mesa Family", "Cama Luxo"].includes(product.name)
+                    );
+                } else {
+                    productsToDisplay = allProductsData.filter(product => product.category === category);
+                }
+
+                if (productsToDisplay.length === 0) {
+                    productsContainer.innerHTML = `<p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #777;">Nenhum produto encontrado nesta categoria.</p>`;
+                    return;
+                }
+
+                productsToDisplay.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.classList.add('product-card');
+                    productCard.setAttribute('data-category', product.category);
+                    productCard.setAttribute('data-name', product.name.toLowerCase());
+                    productCard.innerHTML = `
+                        <img src="${product.image}" alt="${product.name}" class="product-img">
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <p>${product.description.split('.')[0]}.</p> <div class="price">${product.price}</div>
+                        </div>
+                    `;
+                    productCard.addEventListener('click', () => openProductModal(product));
+                    productsContainer.appendChild(productCard);
                 });
             }
 
-            // Event listeners para os botões de filtro na seção Home
-            tabButtonsHome.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    tabButtonsHome.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    filterProducts(productCardsHome, this.dataset.category);
-                });
-            });
+            // Inicializa a seção de produtos com 'all' quando a página carrega
+            // Certifica-se de que a página Home (destaques) seja inicializada corretamente
+            filterProducts('destaques'); // Exibe os destaques na seção Home
 
-            // Event listeners para os botões de filtro na seção Produtos
-            tabButtonsProducts.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    tabButtonsProducts.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    filterProducts(productCardsProducts, this.dataset.category);
-                });
-            });
+            // Lógica do Modal de Detalhes do Produto
+            const productModal = document.getElementById('product-modal');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const modalBody = document.getElementById('modal-body');
 
-            // Funcionalidade de busca
-            searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase();
-                searchResultsDiv.innerHTML = '';
-
-                if (query.length > 0) {
-                    const allProducts = document.querySelectorAll('.product-card');
-                    let matchesFound = false;
-
-                    allProducts.forEach(card => {
-                        const productName = card.dataset.name.toLowerCase();
-                        if (productName.includes(query)) {
-                            const searchItem = document.createElement('div');
-                            searchItem.classList.add('search-item');
-                            searchItem.textContent = card.dataset.name;
-                            searchItem.addEventListener('click', () => {
-                                // Simula clique no card para abrir o modal
-                                openProductModal(card);
-                                searchInput.value = '';
-                                searchResultsDiv.classList.remove('active');
-                            });
-                            searchResultsDiv.appendChild(searchItem);
-                            matchesFound = true;
-                        }
-                    });
-
-                    if (matchesFound) {
-                        searchResultsDiv.classList.add('active');
-                    } else {
-                        searchResultsDiv.classList.remove('active');
-                    }
-                } else {
-                    searchResultsDiv.classList.remove('active');
-                }
-            });
-
-            // Esconde resultados da busca ao clicar fora
-            document.addEventListener('click', function(event) {
-                if (!searchInput.contains(event.target) && !searchResultsDiv.contains(event.target)) {
-                    searchResultsDiv.classList.remove('active');
-                }
-            });
-
-            // Funcionalidade do Modal (Pop-up de detalhes do produto)
-            function openProductModal(productCard) {
-                // Preenche os detalhes do produto
-                modalProductName.textContent = productCard.querySelector('h3').textContent;
-                modalProductPrice.textContent = productCard.querySelector('.price').textContent;
-                modalProductDescription.textContent = productCard.querySelector('p').textContent;
-
-                // Prepara as imagens para o carrossel do modal
-                const imagesData = productCard.dataset.images;
-                let images = [];
-                if (imagesData) {
-                    try {
-                        images = JSON.parse(imagesData);
-                    } catch (e) {
-                        console.error("Erro ao fazer parse das imagens JSON:", e);
-                        // Se houver erro, tenta pegar a imagem principal fallback
-                        const fallbackImg = productCard.querySelector('.product-img') || productCard.querySelector('.swiper-slide img');
-                        if (fallbackImg) images = [fallbackImg.src];
-                    }
-                } else {
-                    // Se não houver data-images, tenta pegar a imagem principal diretamente do card ou do swiper se existir
-                    const fallbackImg = productCard.querySelector('.product-img') || productCard.querySelector('.swiper-slide img');
-                    if (fallbackImg) images = [fallbackImg.src];
-                }
-
-                // Limpa slides anteriores
-                modalSwiperWrapper.innerHTML = '';
-
-                // Adiciona novos slides
-                images.forEach(src => {
-                    const slide = document.createElement('div');
-                    slide.classList.add('swiper-slide');
-                    const img = document.createElement('img');
-                    img.src = src;
-                    img.alt = modalProductName.textContent; // Usar o nome do produto como alt
-                    slide.appendChild(img);
-                    modalSwiperWrapper.appendChild(slide);
-                });
-
-                // Destrói a instância anterior do Swiper se existir
-                if (modalSwiper) {
-                    modalSwiper.destroy(true, true);
-                }
-
-                // Inicializa o Swiper para o modal com as novas imagens
-                modalSwiper = new Swiper('.modal-img-container.swiper', {
-                    direction: 'horizontal',
-                    loop: images.length > 1, // Loop apenas se houver mais de uma imagem
-                    slidesPerView: 1,
-                    spaceBetween: 0,
-                    
-                    pagination: {
-                        el: '.modal-swiper-pagination',
-                        clickable: true,
-                    },
-
-                    navigation: {
-                        nextEl: '.modal-swiper-button-next',
-                        prevEl: '.modal-swiper-button-prev',
-                    },
-                    // Desabilita navegação se houver apenas 1 imagem
-                    allowTouchMove: images.length > 1,
-                    simulateTouch: images.length > 1,
-                });
-
+            function openProductModal(product) {
+                modalBody.innerHTML = `
+                    <div class="modal-img-container">
+                        <img src="${product.image}" alt="${product.name}" class="modal-img">
+                    </div>
+                    <div class="modal-text">
+                        <h2>${product.name}</h2>
+                        <div class="modal-price">${product.price}</div>
+                        <p class="modal-description">${product.description}</p>
+                        ${product.details ? `<ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 1.5rem; color: #444;">${product.details.map(detail => `<li>${detail}</li>`).join('')}</ul>` : ''}
+                        <a href="https://wa.me/5551992520046?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20${encodeURIComponent(product.name)}!" class="btn-whatsapp" target="_blank">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/1200px-WhatsApp.svg.png" alt="WhatsApp Icon"> Comprar via WhatsApp
+                        </a>
+                    </div>
+                `;
                 productModal.classList.add('active');
 
-                // Reseta o estado do zoom
-                isZoomed = false;
-                // O zoom agora será aplicado ao elemento `img` dentro do slide ativo do carrossel do modal.
-                // Mas o clique no slide para o zoom pode conflitar com a navegação do Swiper,
-                // então geralmente o zoom na imagem do modal é mais útil se não houver carrossel lá.
-                // Vou manter o listener no `modalSwiperWrapper` para ser mais genérico,
-                // mas se o Swiper capturar o clique para navegação, o zoom não ocorrerá.
-                // Uma alternativa seria ter um botão de zoom explícito.
+                // Adicionar funcionalidade de zoom na imagem do modal
+                const modalImg = modalBody.querySelector('.modal-img');
+                if (modalImg) {
+                    modalImg.addEventListener('click', function() {
+                        this.classList.toggle('zoomed');
+                    });
+                }
             }
 
-            function closeProductModal() {
+            closeModalBtn.addEventListener('click', () => {
                 productModal.classList.remove('active');
-            }
+            });
 
-            // Event listeners para abrir o modal (clique no card)
-            document.querySelectorAll('.product-card').forEach(card => {
-                card.addEventListener('click', function(event) {
-                    // Impede que o modal seja aberto se o clique for nos controles do Swiper DENTRO DO CARD
-                    if (!event.target.closest('.swiper-button-prev') && 
-                        !event.target.closest('.swiper-button-next') && 
-                        !event.target.closest('.swiper-pagination')) {
-                        openProductModal(this);
+            productModal.addEventListener('click', (e) => {
+                if (e.target === productModal) {
+                    productModal.classList.remove('active');
+                }
+            });
+
+            // Adicionar evento de clique aos cards de produto na Home
+            document.querySelectorAll('#home .product-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const productName = this.getAttribute('data-name');
+                    const product = allProductsData.find(p => p.name.toLowerCase() === productName);
+                    if (product) {
+                        openProductModal(product);
                     }
                 });
             });
 
-            closeModalBtn.addEventListener('click', closeProductModal);
-
-            productModal.addEventListener('click', function(event) {
-                if (event.target === productModal) {
-                    closeProductModal();
-                }
-            });
-            
-            // Funcionalidade de zoom na imagem do modal
-            // ATENÇÃO: O zoom funcionará clicando na imagem ativa do carrossel do modal.
-            // Se houver mais de uma imagem e o carrossel estiver ativo, o clique
-            // na imagem também pode ativar a navegação do Swiper, dependendo da área de clique.
-            // Para um zoom mais consistente em um carrossel, um ícone de zoom separado é melhor.
-            document.querySelector('.modal-img-container.swiper').addEventListener('click', function(event) {
-                // Verifica se o clique foi na imagem dentro de um slide do Swiper
-                const clickedImg = event.target.closest('.swiper-slide img');
-                if (clickedImg && modalSwiper) { // Verifica se é uma imagem e se o Swiper do modal está inicializado
-                    // Se o Swiper estiver em loop e com navegação, ele pode capturar cliques para avançar/voltar.
-                    // Esta lógica de zoom pode ser mais robusta se for ativada por um ícone.
-                    
-                    // No entanto, para o propósito de demonstrar o zoom na imagem do modal:
-                    isZoomed = !isZoomed;
-                    clickedImg.classList.toggle('zoomed', isZoomed);
+            // Adicionar evento de clique aos cards de produto na seção de Produtos
+            productsContainer.addEventListener('click', function(e) {
+                const productCard = e.target.closest('.product-card');
+                if (productCard) {
+                    const productName = productCard.getAttribute('data-name');
+                    const product = allProductsData.find(p => p.name.toLowerCase() === productName);
+                    if (product) {
+                        openProductModal(product);
+                    }
                 }
             });
 
 
-            // **Inicialização do Swiper.js para todos os carrosséis nos cards de produto**
-            // Esta parte é crucial e deve vir DEPOIS de todos os elementos HTML do Swiper estarem carregados
-            document.querySelectorAll('.product-card .swiper').forEach(function(swiperElement) {
-                new Swiper(swiperElement, {
-                    direction: 'horizontal',
-                    loop: true, // Carrossel infinito para os cards
-                    slidesPerView: 1,
-                    spaceBetween: 0,
-                    
-                    pagination: {
-                        el: swiperElement.querySelector('.swiper-pagination'),
-                        clickable: true,
-                    },
+            // Funcionalidade da Barra de Pesquisa
+            const searchInput = document.getElementById('search-input');
+            const searchResultsContainer = document.getElementById('search-results');
 
-                    navigation: {
-                        nextEl: swiperElement.querySelector('.swiper-button-next'),
-                        prevEl: swiperElement.querySelector('.swiper-button-prev'),
-                    },
-                });
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                searchResultsContainer.innerHTML = '';
+
+                if (query.length > 1) {
+                    const filteredResults = allProductsData.filter(product => 
+                        product.name.toLowerCase().includes(query) || 
+                        product.description.toLowerCase().includes(query) ||
+                        product.category.toLowerCase().includes(query)
+                    );
+
+                    if (filteredResults.length > 0) {
+                        filteredResults.forEach(product => {
+                            const searchItem = document.createElement('div');
+                            searchItem.classList.add('search-item');
+                            searchItem.textContent = product.name;
+                            searchItem.addEventListener('click', () => {
+                                openProductModal(product);
+                                searchResultsContainer.classList.remove('active');
+                                searchInput.value = ''; // Limpa o input após a seleção
+                            });
+                            searchResultsContainer.appendChild(searchItem);
+                        });
+                        searchResultsContainer.classList.add('active');
+                    } else {
+                        searchResultsContainer.classList.remove('active');
+                    }
+                } else {
+                    searchResultsContainer.classList.remove('active');
+                }
             });
+
+            // Fecha os resultados da busca ao clicar fora
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResultsContainer.contains(e.target)) {
+                    searchResultsContainer.classList.remove('active');
+                }
+            });
+
+            // Adiciona o texto ao hero após o carregamento
+            const heroText = document.querySelector('.hero h1');
+            const heroParagraph = document.querySelector('.hero p');
+            if (heroText && heroParagraph) {
+                heroText.style.animation = 'slideInFromLeft 1s ease-out forwards';
+                heroParagraph.style.animation = 'slideInFromRight 1.2s ease-out forwards';
+            }
         });
     </script>
 </body>
